@@ -9,9 +9,12 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "",
+  title: "Farmacia Beira Mar I",
   description: "",
 };
+
+import { ReactQueryProvider } from "@/components/providers/react-query-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function RootLayout({
   children,
@@ -23,7 +26,12 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "antialiased", poppins.variable)}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ReactQueryProvider>
+          {children}
+          <Toaster position="top-right" richColors />
+        </ReactQueryProvider>
+      </body>
     </html>
   );
 }
