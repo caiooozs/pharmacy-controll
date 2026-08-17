@@ -1,5 +1,5 @@
 "use client";
-import useCategory from "@/features/stock/queries/useCategory";
+import useCategory from "@/features/categories/useCategory";
 
 const useCategoryViewModel = () => {
   const { data, error, isLoading } = useCategory();
