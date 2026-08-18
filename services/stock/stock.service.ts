@@ -1,6 +1,6 @@
 import { supabase } from "@/supabase/client";
 import { toast } from "sonner";
-import { Category, Movements, Stock } from "./types";
+import { Category, Movements, Stock, StockInsert } from "./types";
 import { waitForDebugger } from "inspector";
 
 export function StockService() {
@@ -40,18 +40,20 @@ export function StockService() {
       throw error;
     }
   }
-  async function createStock(stock: Stock) {
+  async function createStock(stock: StockInsert) {
     try {
       const { data, error } = await supabase
         .from("stock")
         .insert(stock)
         .select()
         .single();
+      if (error) throw error;
       toast.success("Medicamento cadastrado com sucesso.");
       return data;
     } catch (error) {
       console.error("Erro ao cadastrar um medicamento: ", error);
       toast.error("Erro ao cadastrar medicamento.");
+      throw error;
     }
   }
 

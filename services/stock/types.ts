@@ -11,6 +11,19 @@ export interface Stock {
   };
 }
 
+/**
+ * Payload de insert da tabela `stock`.
+ * Difere do `Stock` (formato de leitura, com o join de categoria):
+ * `id`, `registered_at` e `updated_at` são gerados pelo banco, e a coluna
+ * `category` é a FK (bigint) para `categories.id`, não o objeto aninhado.
+ */
+export interface StockInsert {
+  name: string;
+  quantity: number;
+  validity: string;
+  category: number;
+}
+
 export interface Category {
   id: number;
   name: string;

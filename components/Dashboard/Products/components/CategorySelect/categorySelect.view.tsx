@@ -7,21 +7,29 @@ import {
 } from "@/components/ui/select";
 import { CategoryViewProps } from "./categorySelect.model";
 
-const CategorySelectView = ({ data, error, isLoading }: CategoryViewProps) => {
+const CategorySelectView = ({
+  items,
+  value,
+  onValueChange,
+  invalid,
+}: CategoryViewProps) => {
   return (
     <>
       <div>
-        <Select defaultValue="all">
-          <SelectTrigger className="w-full border-white/10 bg-[#0b1210] text-slate-200 sm:w-48">
+        {/* `items` faz o trigger exibir o nome da categoria em vez do id. */}
+        <Select items={items} value={value} onValueChange={onValueChange}>
+          <SelectTrigger
+            className="w-full border-white/10 sm:w-48"
+            aria-invalid={invalid}
+          >
             <SelectValue placeholder="Selecionar Categoria" />
           </SelectTrigger>
           <SelectContent className="border-white/10 bg-[#16211c] text-slate-100">
-            {data &&
-              data.map((category) => (
-                <SelectItem key={category.name} value={category.name}>
-                  {category.name}
-                </SelectItem>
-              ))}
+            {items.map((category) => (
+              <SelectItem key={category.value} value={category.value}>
+                {category.label}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>

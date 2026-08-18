@@ -1,9 +1,11 @@
 "use client";
 import CategorySelectView from "./categorySelect.view";
-import useCategoryViewModel from "./categorySelect.viewmodel";
+import useCategoryViewModel, {
+  CategorySelectParams,
+} from "./categorySelect.viewmodel";
 
-const CategorySelect = () => {
-  const categorySelectLogic = useCategoryViewModel();
+const CategorySelect = (props: CategorySelectParams) => {
+  const categorySelectLogic = useCategoryViewModel(props);
   return <CategorySelectView {...categorySelectLogic} />;
 };
 

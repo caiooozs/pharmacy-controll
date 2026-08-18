@@ -12,9 +12,12 @@ export function DeleteButtonView({
     <>
       <div>
         <Button
-          variant={"destructive"}
+          variant={"ghost"}
+          size={"icon-sm"}
           onClick={handleDelete}
           disabled={isPending}
+          aria-label="Excluir produto"
+          className="text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
         >
           {isPending ? <Spinner /> : <FaTrashAlt />}
         </Button>
